@@ -1,2 +1,2 @@
 # cocora-chocolates
-Cocora Chocolates official website
+Cocora Chocolates
