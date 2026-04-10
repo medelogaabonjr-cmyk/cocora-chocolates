@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COCORA — The Saudi Touch of Chocolate Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine: #3d0a18;
+    --wine-deep: #280610;
+    --wine-mid: #5c1a2e;
+    --gold: #c9a060;
+    --gold-light: #e8c98a;
+    --cream: #f0e4cc;
+    --cream-light: #faf3e8;
+    --text-muted: #c4a882;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--wine-deep);
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(28, 4, 12, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(201, 160, 96, 0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(92, 26, 46, 0.6) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+
+  .hero-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 14vw, 11rem);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3.5rem;
+  }
+
+  .gold-line {
+    width: 80px;
+    height: 0.5px;
+    background: var(--gold);
+    margin: 0 auto 3rem;
+    opacity: 0.5;
+  }
+
+  .hero-desc {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    max-width: 480px;
+    line-height: 2;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 0.5px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    color: var(--wine-deep);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0.75;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    width: 50px;
+    height: 0.5px;
+    background: var(--gold);
+    margin: 1.5rem 0 2.5rem;
+    opacity: 0.5;
+  }
+
+  .section-text {
+    font-size: 0.85rem;
+    line-height: 2;
+    color: var(--text-muted);
+    max-width: 600px;
+  }
+
+  /* ABOUT */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 420px;
+    border: 0.5px solid rgba(201, 160, 96, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--wine);
+  }
+
+  .about-visual-inner {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 7rem;
+    font-weight: 300;
+    color: rgba(201, 160, 96, 0.08);
+    letter-spacing: 0.1em;
+    user-select: none;
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    border: 0.5px solid rgba(201, 160, 96, 0.3);
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+  }
+
+  .about-badge .year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    display: block;
+  }
+
+  .about-badge .year-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* VISION */
+  #vision {
+    background: var(--wine);
+    max-width: 100%;
+    padding: 6rem 4rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+    border-bottom: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .vision-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  .vision-card {
+    border-left: 1px solid rgba(201, 160, 96, 0.3);
+    padding-left: 2rem;
+  }
+
+  .vision-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  /* MENU */
+  #menu {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0;
+    border: 0.5px solid rgba(201, 160, 96, 0.15);
+  }
+
+  .menu-item {
+    padding: 1.5rem 2rem;
+    border-bottom: 0.5px solid rgba(201, 160, 96, 0.1);
+    border-right: 0.5px solid rgba(201, 160, 96, 0.1);
+    transition: background 0.3s;
+  }
+
+  .menu-item:hover {
+    background: rgba(201, 160, 96, 0.05);
+  }
+
+  .menu-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+
+  .menu-item-name span {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-muted);
+  }
+
+  .menu-item-allergy {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: rgba(196, 168, 130, 0.5);
+    margin-bottom: 0.8rem;
+  }
+
+  .menu-item-price {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  /* PACKAGES */
+  #packages {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .package-card {
+    border: 0.5px solid rgba(201, 160, 96, 0.25);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .package-card:hover {
+    border-color: rgba(201, 160, 96, 0.6);
+    background: rgba(201, 160, 96, 0.04);
+  }
+
+  .package-persons {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .package-persons-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .package-details {
+    margin: 1.2rem 0;
+    padding: 1.2rem 0;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.15);
+    border-bottom: 0.5px solid rgba(201, 160, 96, 0.15);
+  }
+
+  .package-detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .package-detail-row span:last-child {
+    color: var(--cream);
+  }
+
+  .package-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--cream);
+  }
+
+  .package-price-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    display: block;
+  }
+
+  .package-supervisor-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(201, 160, 96, 0.12);
+    border: 0.5px solid rgba(201, 160, 96, 0.3);
+    padding: 0.25rem 0.6rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* EID PACKAGES */
+  #eid {
+    background: var(--wine);
+    max-width: 100%;
+    padding: 6rem 4rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .eid-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .eid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .eid-card {
+    border: 0.5px solid rgba(201, 160, 96, 0.25);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .eid-card:hover {
+    background: rgba(201, 160, 96, 0.06);
+    border-color: rgba(201, 160, 96, 0.5);
+  }
+
+  .eid-discount {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .eid-trays {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .eid-trays-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .eid-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+  }
+
+  /* B2B */
+  #b2b {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .b2b-services {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0;
+    border: 0.5px solid rgba(201, 160, 96, 0.15);
+    margin-top: 3rem;
+  }
+
+  .b2b-service {
+    padding: 2rem;
+    border-bottom: 0.5px solid rgba(201, 160, 96, 0.1);
+    border-right: 0.5px solid rgba(201, 160, 96, 0.1);
+    transition: background 0.3s;
+  }
+
+  .b2b-service:hover { background: rgba(201, 160, 96, 0.04); }
+
+  .b2b-service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: rgba(201, 160, 96, 0.2);
+    margin-bottom: 0.5rem;
+  }
+
+  .b2b-service-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+
+  .b2b-value-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .b2b-value-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .b2b-value-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .b2b-value-text {
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  /* THE CHEFZ APP */
+  #chefzapp {
+    background: var(--wine);
+    max-width: 100%;
+    padding: 6rem 4rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+    border-bottom: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .chefz-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .chefz-text { flex: 1; }
+
+  .chefz-app-box {
+    flex: 0 0 300px;
+    border: 0.5px solid rgba(201, 160, 96, 0.3);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .chefz-app-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .chefz-app-name {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .chefz-btn {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    border: 0.5px solid rgba(201, 160, 96, 0.4);
+    color: var(--gold);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s;
+  }
+
+  .chefz-btn:hover {
+    background: var(--gold);
+    color: var(--wine-deep);
+    border-color: var(--gold);
+  }
+
+  /* CONTACT */
+  #contact {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+    border-top: 0.5px solid rgba(201, 160, 96, 0.12);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 3rem;
+  }
+
+  .contact-info-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.5px solid rgba(201, 160, 96, 0.1);
+  }
+
+  .contact-info-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    opacity: 0.7;
+  }
+
+  .contact-info-value {
+    font-size: 0.9rem;
+    color: var(--cream);
+    line-height: 1.8;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border: 0.5px solid rgba(201, 160, 96, 0.15);
+    transition: all 0.3s;
+  }
+
+  .social-link:hover {
+    border-color: rgba(201, 160, 96, 0.5);
+    color: var(--gold);
+    background: rgba(201, 160, 96, 0.04);
+  }
+
+  .social-link-platform {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 80px;
+    opacity: 0.7;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--wine-deep);
+    border-top: 0.5px solid rgba(201, 160, 96, 0.15);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+  }
+
+  .footer-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(196, 168, 130, 0.4);
+    text-align: center;
+  }
+
+  .footer-tagline {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201, 160, 96, 0.4);
+  }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem 1.5rem;
+    }
+    .nav-links { display: none; }
+    #about, .vision-inner, .contact-grid, .chefz-inner, .b2b-value-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    section, #about, #vision, #menu, #packages, #eid, #b2b, #chefzapp, #contact {
+      padding: 4rem 1.5rem;
+    }
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    .chefz-app-box { flex: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">COCORA</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#b2b">B2B</a></li>
+    <li><a href="#chefzapp">The Chefz App</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-tagline">Est. Riyadh — 2026</p>
+  <h1 class="hero-logo">COCORA</h1>
+  <p class="hero-sub">The Saudi Touch of Chocolate Art</p>
+  <div class="gold-line"></div>
+  <p class="hero-desc">A fully integrated chocolate experience, reflecting authentic Saudi taste through premium quality, thoughtful creativity, and meticulous attention to detail.</p>
+  <a href="#menu" class="btn-primary">Explore Our Collection</a>
+</section>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="about-visual fade-up">
+    <div class="about-visual-inner">كوكورا</div>
+    <div class="about-badge">
+      <span class="year">2026</span>
+      <span class="year-label">Founded in Riyadh</span>
+    </div>
+  </div>
+  <div class="fade-up">
+    <p class="section-label">About Us</p>
+    <h2 class="section-title">Crafted with Saudi Soul</h2>
+    <div class="divider"></div>
+    <p class="section-text">Cocora was founded in Riyadh as a Saudi chocolate brand offering a fully integrated chocolate experience — reflecting authentic Saudi taste through premium quality, thoughtful creativity, and meticulous attention to detail.</p>
+    <br>
+    <p class="section-text" style="margin-top:1rem;">We select our clients carefully, ensuring every collaboration delivers a premium experience from the very first contact. Every detail — flavor, shape, mold, color, and packaging — is crafted to serve your identity.</p>
+  </div>
+</div>
+
+<!-- VISION / MISSION -->
+<div id="vision">
+  <div class="vision-inner">
+    <div class="vision-card fade-up">
+      <p class="section-label">Our Vision</p>
+      <h3>The leading Saudi reference in luxury chocolate making</h3>
+      <div class="divider"></div>
+      <p class="section-text">To become the most prominent example of embodying innovation and local identity — achieving a competitive presence aligned with international standards, in harmony with the goals of Saudi Vision 2030.</p>
+    </div>
+    <div class="vision-card fade-up">
+      <p class="section-label">Our Mission</p>
+      <h3>Luxury chocolate solutions for premium markets</h3>
+      <div class="divider"></div>
+      <p class="section-text">To deliver luxury chocolate solutions that combine global quality standards with local identity, and to design distinctive experiences that meet the expectations of businesses and premium markets.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<div id="menu">
+  <p class="section-label">Our Collection</p>
+  <h2 class="section-title">The Chocolate Menu</h2>
+  <div class="divider"></div>
+  <p class="section-text">All chocolates priced at SAR 400 / kg unless noted. Allergy information provided for your safety.</p>
+
+  <div class="menu-grid" style="margin-top:3rem;">
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Spice <span>Ganache</span></p>
+      <p class="menu-item-allergy">Allergies: Milk</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Earl <span>Grey</span></p>
+      <p class="menu-item-allergy">Allergies: Milk</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Raspberry <span>Delight</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Eggs, Gluten, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Tropical <span>Caramel</span></p>
+      <p class="menu-item-allergy">Allergies: Milk</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Cinnamon Crunchy <span>Speculaas</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Gluten, Soya</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Espresso Pecan <span>Praline</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Gluten, Nuts, Soya</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Espresso <span>& Vanilla</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Pistachio <span>& Lemon</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Eggs, Gluten, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Saudi Coffee <span>& Cardamom</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Soya, Gluten</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Oriental Caramel <span>Fudge</span></p>
+      <p class="menu-item-allergy">Allergies: Nuts, Sulphites</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Gianduja Orange <span>Praliné</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Dark Chocolate <span>Wafer</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Eggs, Gluten, Nuts, Soya</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Milk Chocolate <span>Wafer</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Soya, Gluten, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Truffle <span>Chocolate</span></p>
+      <p class="menu-item-allergy">Allergies: Dairy, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name"><span>Dentelle</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Soya, Gluten</p>
+      <p class="menu-item-price">SAR 450 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Crunchy Mango <span>& Passion</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Gluten</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Hazelnut Gold <span>Rocher</span></p>
+      <p class="menu-item-allergy">Allergies: Dairy, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate <span>Rolls</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Soya, Gluten</p>
+      <p class="menu-item-price">SAR 450 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate Slices <span>with Dried Fruits</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Dried Fruits</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate Slices <span>with Pistachio</span></p>
+      <p class="menu-item-allergy">Allergies: Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate Slices <span>with Almonds</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts, Almonds</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Pistachio <span>Fingers</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Dry Berries <span>Fingers</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate Almond <span>Dragee</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate Hazelnut <span>Dragee</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate Pecan <span>Dragee</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Chocolate Cashew <span>Dragee</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">SAR 400 / kg</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Mix Nut <span>Bar</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Nuts</p>
+      <p class="menu-item-price">Per piece only</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Gianduia Hazelnut <span>Bar</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Soya, Nuts</p>
+      <p class="menu-item-price">Per piece only</p>
+    </div>
+
+    <div class="menu-item fade-up">
+      <p class="menu-item-name">Ghazela Pistachio <span>Bar</span></p>
+      <p class="menu-item-allergy">Allergies: Milk, Soya, Nuts</p>
+      <p class="menu-item-price">Per piece only</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<div id="packages">
+  <p class="section-label">Event Packages — الباقات</p>
+  <h2 class="section-title">Chocolate for Every Occasion</h2>
+  <div class="divider"></div>
+  <p class="section-text">Curated event packages for weddings, corporate events, and celebrations. All packages include premium trays served on our signature wooden stands.</p>
+
+  <div class="packages-grid">
+
+    <div class="package-card fade-up">
+      <span class="package-persons">20</span>
+      <span class="package-persons-label">Persons</span>
+      <div class="package-details">
+        <div class="package-detail-row"><span>Trays</span><span>4 trays</span></div>
+        <div class="package-detail-row"><span>Weight</span><span>4 kg</span></div>
+      </div>
+      <span class="package-price-label">Price</span>
+      <span class="package-price">SAR 1,600</span>
+    </div>
+
+    <div class="package-card fade-up">
+      <span class="package-persons">50</span>
+      <span class="package-persons-label">Persons</span>
+      <div class="package-details">
+        <div class="package-detail-row"><span>Trays</span><span>6 trays</span></div>
+        <div class="package-detail-row"><span>Weight</span><span>9 kg</span></div>
+      </div>
+      <span class="package-price-label">Price</span>
+      <span class="package-price">SAR 3,600</span>
+    </div>
+
+    <div class="package-card fade-up">
+      <div class="package-supervisor-badge">+ Supervisor</div>
+      <span class="package-persons">100</span>
+      <span class="package-persons-label">Persons</span>
+      <div class="package-details">
+        <div class="package-detail-row"><span>Trays</span><span>10 trays</span></div>
+        <div class="package-detail-row"><span>Weight</span><span>15 kg</span></div>
+      </div>
+      <span class="package-price-label">Price</span>
+      <span class="package-price">SAR 6,000</span>
+    </div>
+
+    <div class="package-card fade-up">
+      <div class="package-supervisor-badge">+ Supervisor</div>
+      <span class="package-persons">150</span>
+      <span class="package-persons-label">Persons</span>
+      <div class="package-details">
+        <div class="package-detail-row"><span>Trays</span><span>15 trays</span></div>
+        <div class="package-detail-row"><span>Weight</span><span>22.5 kg</span></div>
+      </div>
+      <span class="package-price-label">Price</span>
+      <span class="package-price">SAR 9,000</span>
+    </div>
+
+    <div class="package-card fade-up">
+      <div class="package-supervisor-badge">+ Supervisor</div>
+      <span class="package-persons">200</span>
+      <span class="package-persons-label">Persons</span>
+      <div class="package-details">
+        <div class="package-detail-row"><span>Trays</span><span>20 trays</span></div>
+        <div class="package-detail-row"><span>Weight</span><span>30 kg</span></div>
+      </div>
+      <span class="package-price-label">Price</span>
+      <span class="package-price">SAR 12,000</span>
+    </div>
+
+    <div class="package-card fade-up">
+      <div class="package-supervisor-badge">+ Supervisor</div>
+      <span class="package-persons">300</span>
+      <span class="package-persons-label">Persons</span>
+      <div class="package-details">
+        <div class="package-detail-row"><span>Trays</span><span>25 trays</span></div>
+        <div class="package-detail-row"><span>Weight</span><span>37.5 kg</span></div>
+      </div>
+      <span class="package-price-label">Price</span>
+      <span class="package-price">SAR 15,000</span>
+    </div>
+
+    <div class="package-card fade-up">
+      <div class="package-supervisor-badge">+ Supervisor</div>
+      <span class="package-persons">400</span>
+      <span class="package-persons-label">Persons</span>
+      <div class="package-details">
+        <div class="package-detail-row"><span>Trays</span><span>30 trays</span></div>
+        <div class="package-detail-row"><span>Weight</span><span>45 kg</span></div>
+      </div>
+      <span class="package-price-label">Price</span>
+      <span class="package-price">SAR 18,000</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- EID PACKAGES -->
+<div id="eid">
+  <div class="eid-inner">
+    <p class="section-label">Seasonal Offerings</p>
+    <h2 class="section-title">Eid Collection</h2>
+    <div class="divider"></div>
+    <p class="section-text">Special Eid packages crafted with seasonal care — offered with exclusive discounts to celebrate the occasion.</p>
+
+    <div class="eid-grid">
+
+      <div class="eid-card fade-up">
+        <span class="eid-discount">10% Discount</span>
+        <span class="eid-trays">4</span>
+        <span class="eid-trays-label">Trays · 4 kg</span>
+        <span class="eid-price">SAR 1,440</span>
+      </div>
+
+      <div class="eid-card fade-up">
+        <span class="eid-discount">15% Discount</span>
+        <span class="eid-trays">6</span>
+        <span class="eid-trays-label">Trays · 6 kg</span>
+        <span class="eid-price">SAR 2,024</span>
+      </div>
+
+      <div class="eid-card fade-up">
+        <span class="eid-discount">15% Discount</span>
+        <span class="eid-trays">8</span>
+        <span class="eid-trays-label">Trays · 8 kg</span>
+        <span class="eid-price">SAR 2,720</span>
+      </div>
+
+      <div class="eid-card fade-up">
+        <span class="eid-discount">15% Discount</span>
+        <span class="eid-trays">10</span>
+        <span class="eid-trays-label">Trays · 10 kg</span>
+        <span class="eid-price">SAR 3,400</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- B2B SERVICES -->
+<div id="b2b">
+  <p class="section-label">Corporate Solutions</p>
+  <h2 class="section-title">Our B2B Services</h2>
+  <div class="divider"></div>
+  <p class="section-text">We select our clients carefully. From private labels to hotel supply — every solution is built with precision and exclusivity.</p>
+
+  <div class="b2b-services">
+    <div class="b2b-service fade-up">
+      <div class="b2b-service-num">01</div>
+      <p class="b2b-service-name">Private Label Chocolate</p>
+    </div>
+    <div class="b2b-service fade-up">
+      <div class="b2b-service-num">02</div>
+      <p class="b2b-service-name">Corporate Gifts & VIP Boxes</p>
+    </div>
+    <div class="b2b-service fade-up">
+      <div class="b2b-service-num">03</div>
+      <p class="b2b-service-name">Hotel & Restaurant Chocolate Supply</p>
+    </div>
+    <div class="b2b-service fade-up">
+      <div class="b2b-service-num">04</div>
+      <p class="b2b-service-name">Event & Exhibition Chocolate Solutions</p>
+    </div>
+    <div class="b2b-service fade-up">
+      <div class="b2b-service-num">05</div>
+      <p class="b2b-service-name">Custom Flavor & Mold Development</p>
+    </div>
+  </div>
+
+  <div class="b2b-value-grid">
+    <div class="b2b-value-item">
+      <div class="b2b-value-dot"></div>
+      <p class="b2b-value-text">Chocolate designed to reflect your brand identity</p>
+    </div>
+    <div class="b2b-value-item">
+      <div class="b2b-value-dot"></div>
+      <p class="b2b-value-text">Stable, consistent flavors suitable for continuous supply</p>
+    </div>
+    <div class="b2b-value-item">
+      <div class="b2b-value-dot"></div>
+      <p class="b2b-value-text">Corporate-grade packaging with custom colors & messages</p>
+    </div>
+    <div class="b2b-value-item">
+      <div class="b2b-value-dot"></div>
+      <p class="b2b-value-text">Professional B2B order management with clear contracts</p>
+    </div>
+    <div class="b2b-value-item">
+      <div class="b2b-value-dot"></div>
+      <p class="b2b-value-text">Capability to handle large-volume orders with seasonal flexibility</p>
+    </div>
+    <div class="b2b-value-item">
+      <div class="b2b-value-dot"></div>
+      <p class="b2b-value-text">A premium experience from the very first contact</p>
+    </div>
+  </div>
+</div>
+
+<!-- THE CHEFZ APP -->
+<div id="chefzapp">
+  <div class="chefz-inner">
+    <div class="chefz-text fade-up">
+      <p class="section-label">Digital Platform</p>
+      <h2 class="section-title">The Chefz App</h2>
+      <div class="divider"></div>
+      <p class="section-text">Discover Cocora Chocolates and explore our full collection through The Chefz App — your gateway to premium Saudi culinary experiences. Browse our menu, place orders, and connect with us directly.</p>
+      <br>
+      <p class="section-text" style="margin-top:1rem;">Available on the App Store and Google Play. Download now and experience the Saudi touch of chocolate art at your fingertips.</p>
+    </div>
+    <div class="chefz-app-box fade-up">
+      <div class="chefz-app-icon">CHEFZ</div>
+      <p class="chefz-app-name">Download The App</p>
+      <a href="https://thechefzco.app.link/INfd1unze2b" target="_blank" class="chefz-btn">Find Us on The Chefz App</a>
+      <a href="https://thechefzco.app.link/INfd1unze2b" target="_blank" class="chefz-btn">Order via The Chefz</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-title">Contact Us</h2>
+  <div class="divider"></div>
+
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-item fade-up">
+        <p class="contact-info-label">Location</p>
+        <p class="contact-info-value">King Abdulaziz Road<br>Al-Aridh District, Riyadh<br>Saudi Arabia</p>
+        <a href="https://share.google/txQ4cIIvv5kvPdvBU" target="_blank" style="display:inline-block; margin-top:1rem; padding:0.7rem 1.5rem; border:0.5px solid rgba(201,160,96,0.4); color:var(--gold); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--wine-deep)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Open in Google Maps</a>
+      </div>
+      <div class="contact-info-item fade-up">
+        <p class="contact-info-label">Phone / WhatsApp</p>
+        <p class="contact-info-value">0559 599 266</p>
+      </div>
+      <div class="contact-info-item fade-up">
+        <p class="contact-info-label">Business Hours</p>
+        <p class="contact-info-value">Saturday – Thursday<br>2:00 PM — 11:00 PM</p>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <p class="section-label">Follow Us</p>
+      <div class="social-links" style="margin-top:1.5rem;">
+        <a href="https://www.instagram.com/cocora_sa/" target="_blank" class="social-link">
+          <span class="social-link-platform">Instagram</span>
+          <span>@cocora_sa</span>
+        </a>
+        <a href="https://www.tiktok.com/@cocora_sa" target="_blank" class="social-link">
+          <span class="social-link-platform">TikTok</span>
+          <span>@cocora_sa</span>
+        </a>
+        <a href="https://wa.me/966559599266" target="_blank" class="social-link">
+          <span class="social-link-platform">WhatsApp</span>
+          <span>0559 599 266</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">COCORA</span>
+  <div class="footer-text">
+    <p>© 2026 Cocora — شركة الوفاق لبيع المواد الغذائية</p>
+    <p style="margin-top:0.3rem;">Commercial License No. 460216482760</p>
+  </div>
+  <span class="footer-tagline">The Saudi Touch of Chocolate Art</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
